@@ -12,15 +12,15 @@ public class PlayerMover : MonoBehaviour {
     public PlayerMover Initialize(float movementSpeed) {
         _aiAgent = GetComponent<NavMeshAgent>();
         _aiAgent.speed = movementSpeed;
-        
+
         return this;
     }
 
     private void Update() {
-        if (Mathf.Approximately(_aiAgent.remainingDistance, 0)) {
+        if (Mathf.Approximately(_aiAgent.remainingDistance, 0) && !_aiAgent.pathPending) {
             Arrived?.Invoke();
         }
     }
 
-    public void MoveTo(Vector3 position) => _aiAgent.SetDestination(position);
+    public void MoveTo(Vector3 position) => _aiAgent.destination = position;
 }
