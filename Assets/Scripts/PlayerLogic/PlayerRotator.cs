@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 
 public class PlayerRotator : MonoBehaviour {
-    [Header("Metrics")]
-    [SerializeField] private float _timeForRotation = 0.2f;
-
+    private float _timeForRotation = 0.2f;
     private Transform _transform;
 
-    private void Awake() {
+    public PlayerRotator Initialize(float timeForRotation) {
         _transform = transform;
+        _timeForRotation = timeForRotation;
+
+        return this;
     }
 
     public void RotateToEnemies(EnemyBehaviour[] enemies) {
@@ -17,7 +18,7 @@ public class PlayerRotator : MonoBehaviour {
     }
 
     private IEnumerator RotateSmoothly(Vector3 targetDirection) {
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         Quaternion startRotation = _transform.rotation;
 
         float progress = 0;
@@ -37,7 +38,7 @@ public class PlayerRotator : MonoBehaviour {
         }
 
         Vector3 direction = (enemyBounds.center - transform.position).normalized;
-        direction.y = transform.position.y;
+        direction.y = 0;
         direction.Normalize();
 
         return direction;

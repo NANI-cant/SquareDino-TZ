@@ -1,30 +1,38 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BattlesHandler))]
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(PlayerRotator))]
 [RequireComponent(typeof(Shooter))]
 public class PlayerBehaviour : MonoBehaviour {
-    private BattlesHandler _battleHandler;
-    private PlayerMover _mover;
-    private PlayerRotator _rotator;
+    [Header("Metrics")]
+
+    [Header("Movement")]
+    [SerializeField][Min(0)] private float _movementSpeed = 5f;
+    [SerializeField][Min(0)] private float _timeForRotation = 0.2f;
+
+    [Header("Shooting")]
+    [SerializeField][Min(0)] private float _bulletSpeed;
+    [SerializeField][Min(0)] private float _bulletLifeTime;
+
     private Shooter _shooter;
     private PlayerStateMachine _stateMachine;
 
     private void Awake() {
-        _battleHandler = GetComponent<BattlesHandler>();
-        _mover = GetComponent<PlayerMover>();
-        _shooter = GetComponent<Shooter>();
-        _rotator = GetComponent<PlayerRotator>();
+        _shooter = GetComponent<Shooter>().Initialize(_bulletSpeed, _bulletLifeTime);
+        
+        PlayerMover mover = GetComponent<PlayerMover>().Initialize(_movementSpeed);
+        PlayerRotator rotator = GetComponent<PlayerRotator>().Initialize(_timeForRotation);
 
-        _stateMachine = new PlayerStateMachine(_shooter, _battleHandler, _mover, _rotator, this);
+        if (Bootstrapper.TryGetInstance<BattlesHandler>(out BattlesHandler battleHandler) == false) {
+            Debug.LogException(new System.Exception($"{this}: {nameof(battleHandler)} is null"));
+        }
+        if (Bootstrapper.TryGetInstance<GameLifeCycle>(out GameLifeCycle gameLifeCycle) == false) {
+            Debug.LogException(new System.Exception($"{this}: {nameof(gameLifeCycle)} is null"));
+        }
+
+        _stateMachine = new PlayerStateMachine(_shooter, battleHandler, mover, rotator, this, gameLifeCycle);
     }
 
-    private void Start() {
-        _stateMachine.TranslateTo<PlayerMovingState>();
-    }
-
-    public void Shoot(Vector3 target) {
-        _shooter.Shot(target);
-    }
+    private void Start() => _stateMachine.TranslateTo<PlayerPrepearingState>();
+    public void Shoot(Vector3 target) => _shooter.Shot(target);
 }

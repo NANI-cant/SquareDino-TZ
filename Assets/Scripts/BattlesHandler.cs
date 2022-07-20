@@ -19,12 +19,19 @@ public class BattlesHandler : MonoBehaviour {
         _currentBattleIndex = 0;
     }
 
+    private void Start() {
+        foreach (var battle in _battles) {
+            battle.DisableEnemies();
+        }
+    }
+
     public void OnArrived(PlayerBehaviour character) {
         _enemiesRemained = CurrentBattle.Enemies.Length;
         foreach (var enemy in CurrentBattle.Enemies) {
             enemy.Died += OnEnemieDied;
             enemy.Attack(character);
         }
+        CurrentBattle.EnableEnemies();
         if (_enemiesRemained == 0) EndBattle();
     }
 

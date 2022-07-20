@@ -4,14 +4,16 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMover : MonoBehaviour {
-
     public event Action Arrived;
 
     private int _currentPointIndex;
     private NavMeshAgent _aiAgent;
 
-    private void Awake() {
+    public PlayerMover Initialize(float movementSpeed) {
         _aiAgent = GetComponent<NavMeshAgent>();
+        _aiAgent.speed = movementSpeed;
+        
+        return this;
     }
 
     private void Update() {

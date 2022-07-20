@@ -2,20 +2,28 @@ using System;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour {
-    [Header("Metrics")]
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _bulletLifeTime;
-
     [Header("Dev")]
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
     [SerializeField] private Vector3 _shootingOffset;
 
     private Transform _transform;
     private bool _isAllow;
+    private float _bulletSpeed;
+    private float _bulletLifeTime;
 
     private void Awake() {
+
+    }
+
+    public Shooter Initialize(float bulletSpeed, float bulletLifeTime) {
+        _bulletLifeTime = bulletLifeTime;
+        _bulletSpeed = bulletSpeed;
+
         _transform = transform;
-        _bulletPool.Initialize(null);
+        _bulletPool.Initialize();
+        Forbid();
+
+        return this;
     }
 
     public void Allow() => _isAllow = true;
