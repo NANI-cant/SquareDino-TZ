@@ -32,7 +32,7 @@ public class PlayerRotator : MonoBehaviour {
     private Vector3 CalculateTargetDirection(EnemyBehaviour[] enemies) {
         if (enemies.Length == 0) return Vector3.zero;
 
-        Bounds enemyBounds = enemies[0].GetComponent<Collider>().bounds;
+        Bounds enemyBounds = enemies[0].Collider.bounds;
         for (int i = 1; i < enemies.Length; i++) {
             enemyBounds.Encapsulate(enemies[i].GetComponent<Collider>().bounds);
         }
