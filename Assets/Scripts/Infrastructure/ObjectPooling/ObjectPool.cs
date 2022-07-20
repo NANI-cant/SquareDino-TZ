@@ -5,16 +5,17 @@ using UnityEngine;
 public class ObjectPool<T> where T : MonoBehaviour, IPoolable<T> {
     [SerializeField] private T _template;
     [SerializeField][Min(1)] private int _startSize = 1;
+    [SerializeField] private Transform _container;
 
     private Queue<T> _freePool = new Queue<T>();
     private List<T> _activePool = new List<T>();
-    private Transform _container;
-
     private int _size = 1;
 
+    public void Initialize() {
+        Expand(_startSize);
+    }
     public void Initialize(Transform container) {
         _container = container;
-        _size = _startSize;
         Expand(_startSize);
     }
 

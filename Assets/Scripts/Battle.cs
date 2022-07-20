@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Battle : MonoBehaviour {
@@ -9,5 +10,17 @@ public class Battle : MonoBehaviour {
 
     private void Awake() {
         if (_wayPoint == null) Debug.LogException(new System.Exception($"{this}: {nameof(_wayPoint)} is null"));
+    }
+
+    public void DisableEnemies() {
+        foreach (var enemy in _enemies) {
+            enemy.Disable();
+        }
+    }
+
+    public void EnableEnemies() {
+        foreach (var enemy in _enemies) {
+            enemy.Enable();
+        }
     }
 }
