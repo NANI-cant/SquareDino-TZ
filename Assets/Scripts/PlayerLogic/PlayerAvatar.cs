@@ -5,12 +5,6 @@ public class PlayerAvatar : MonoBehaviour {
 
     private const string RUNNINGKEY = "Running";
 
-    public void SetRunning() {
-        Debug.Log("A");
-        _animator.SetBool(RUNNINGKEY, true);
-    }
-    public void SetIdle() {
-        Debug.Log("B");
-        _animator.SetBool(RUNNINGKEY, false);
-    }
+    public void SetRunning() => _animator.SetBool(RUNNINGKEY, true);
+    public void SetIdle() => _animator.SetBool(RUNNINGKEY, false);
 }
