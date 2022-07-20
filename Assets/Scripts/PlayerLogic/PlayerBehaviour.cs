@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(PlayerRotator))]
 [RequireComponent(typeof(Shooter))]
+[RequireComponent(typeof(PlayerAvatar))]
 public class PlayerBehaviour : MonoBehaviour {
     [Header("Metrics")]
 
@@ -19,9 +20,10 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void Awake() {
         _shooter = GetComponent<Shooter>().Initialize(_bulletSpeed, _bulletLifeTime);
-        
+
         PlayerMover mover = GetComponent<PlayerMover>().Initialize(_movementSpeed);
         PlayerRotator rotator = GetComponent<PlayerRotator>().Initialize(_timeForRotation);
+        PlayerAvatar avatar = GetComponent<PlayerAvatar>();
 
         if (Bootstrapper.TryGetInstance<BattlesHandler>(out BattlesHandler battleHandler) == false) {
             Debug.LogException(new System.Exception($"{this}: {nameof(battleHandler)} is null"));
@@ -30,7 +32,7 @@ public class PlayerBehaviour : MonoBehaviour {
             Debug.LogException(new System.Exception($"{this}: {nameof(gameLifeCycle)} is null"));
         }
 
-        _stateMachine = new PlayerStateMachine(_shooter, battleHandler, mover, rotator, this, gameLifeCycle);
+        _stateMachine = new PlayerStateMachine(_shooter, battleHandler, mover, rotator, this, gameLifeCycle, avatar);
     }
 
     private void Start() => _stateMachine.TranslateTo<PlayerPrepearingState>();

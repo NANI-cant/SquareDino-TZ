@@ -6,15 +6,18 @@ public class PlayerShootingState : State {
     private PlayerRotator _rotator;
     private BattlesHandler _battleHandler;
     private PlayerStateMachine _stateMachine;
+    private PlayerAvatar _avatar;
 
-    public PlayerShootingState(PlayerStateMachine stateMachine,Shooter shooter, PlayerRotator rotator, BattlesHandler battleHandler) {
+    public PlayerShootingState(PlayerStateMachine stateMachine, Shooter shooter, PlayerRotator rotator, BattlesHandler battleHandler, PlayerAvatar avatar) {
         _stateMachine = stateMachine;
         _shooter = shooter;
         _rotator = rotator;
         _battleHandler = battleHandler;
+        _avatar = avatar;
     }
 
     public override void Enter() {
+        _avatar.SetIdle();
         _rotator.RotateToEnemies(_battleHandler.CurrentEnemies);
         _battleHandler.BattleEnded += OnBattleEnded;
         _battleHandler.GameWon += OnGameWon;
