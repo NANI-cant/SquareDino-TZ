@@ -28,14 +28,14 @@ public class BattlesHandler : MonoBehaviour {
     public void OnArrived(PlayerBehaviour character) {
         _enemiesRemained = CurrentBattle.Enemies.Length;
         foreach (var enemy in CurrentBattle.Enemies) {
-            enemy.Died += OnEnemieDied;
+            enemy.Health.Died += OnEnemieDied;
             enemy.Attack(character);
         }
         CurrentBattle.EnableEnemies();
         if (_enemiesRemained == 0) EndBattle();
     }
 
-    private void OnEnemieDied() {
+    private void OnEnemieDied(HitBox hitBox) {
         _enemiesRemained--;
         if (_enemiesRemained == 0) EndBattle();
     }

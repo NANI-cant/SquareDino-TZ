@@ -14,13 +14,13 @@ public class Battle : MonoBehaviour {
 
     public void DisableEnemies() {
         foreach (var enemy in _enemies) {
-            enemy.Disable();
+            enemy.Health.Disable();
         }
     }
 
     public void EnableEnemies() {
         foreach (var enemy in _enemies) {
-            enemy.Enable();
+            enemy.Health.Enable();
         }
     }
 }

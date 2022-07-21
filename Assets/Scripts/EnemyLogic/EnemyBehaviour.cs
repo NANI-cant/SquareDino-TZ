@@ -1,53 +1,32 @@
-using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(EnemyAvatar))]
+[RequireComponent(typeof(EnemyHealth))]
 public class EnemyBehaviour : MonoBehaviour {
     [Header("Metrics")]
     [SerializeField][Min(0)] private int _maxHealth;
+    [SerializeField][Min(0)] private float _lastHitForce = 100f;
 
-    public event Action Died;
-    public event Action HitTaked;
-
-    private bool _canTakeHit;
     private EnemyAvatar _avatar;
-    private Collider _collider;
-    private int _health;
+    private EnemyHealth _health;
 
-    public Collider Collider => _collider;
-    public int MaxHealth => _maxHealth;
-    public int CurrentHealth => _health;
+    public Bounds Bounds => _health.HitBoxesBounds;
+    public EnemyHealth Health => _health;
 
     private void Awake() {
         _avatar = GetComponent<EnemyAvatar>();
-        _collider = GetComponent<Collider>();
-
-        _health = _maxHealth;
+        _health = GetComponent<EnemyHealth>().Initialize(_maxHealth);
     }
+
+    private void OnEnable() => _health.Died += OnDied;
+    private void OnDisable() => _health.Died -= OnDied;
 
     public void Attack(PlayerBehaviour character) {
         transform.forward = (character.transform.position - transform.position).normalized;
     }
 
-    public void TakeHit() {
-        if (!_canTakeHit) return;
-
-        _health--;
-        if (_health <= 0) {
-            Die();
-        }
-        else {
-            HitTaked?.Invoke();
-        }
-    }
-
-    public void Disable() => _canTakeHit = false;
-    public void Enable() => _canTakeHit = true;
-
-    private void Die() {
-        _collider.enabled = false;
+    private void OnDied(HitBox lastHitBox) {
         _avatar.Fall();
-        Died?.Invoke();
+        lastHitBox.ImpactForce(_lastHitForce);
     }
 }
