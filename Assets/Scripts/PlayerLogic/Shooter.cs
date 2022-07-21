@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour {
@@ -10,10 +9,6 @@ public class Shooter : MonoBehaviour {
     private bool _isAllow;
     private float _bulletSpeed;
     private float _bulletLifeTime;
-
-    private void Awake() {
-
-    }
 
     public Shooter Initialize(float bulletSpeed, float bulletLifeTime) {
         _bulletLifeTime = bulletLifeTime;
