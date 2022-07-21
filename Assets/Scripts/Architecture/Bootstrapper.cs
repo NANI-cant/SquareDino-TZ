@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Bootstrapper : MonoBehaviour {
     [SerializeField] private BattlesHandler _battlesHandler;
+    [SerializeField] private PlayerBehaviour _player;
 
     private static Dictionary<Type, object> _container;
 
     public BattlesHandler BattlesHandler => _battlesHandler;
+    public PlayerBehaviour Player => _player;
 
-    public static bool TryGetInstance<T>(out T instance) {
+    public static T GetInstance<T>() {
         if (_container.ContainsKey(typeof(T))) {
-            instance = (T)_container[typeof(T)];
-            return true;
+            return (T)_container[typeof(T)];
         }
-        instance = default(T);
-        return false;
+        Debug.LogException(new Exception($"{nameof(Bootstrapper)}: {nameof(T)} is null"));
+        return default(T);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -24,6 +25,7 @@ public class Bootstrapper : MonoBehaviour {
         var instance = FindObjectOfType<Bootstrapper>();
 
         _container[typeof(BattlesHandler)] = instance.BattlesHandler;
+        _container[typeof(PlayerBehaviour)] = instance.Player;
         _container[typeof(GameLifeCycle)] = new GameLifeCycle();
     }
 }

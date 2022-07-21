@@ -25,12 +25,8 @@ public class PlayerBehaviour : MonoBehaviour {
         PlayerRotator rotator = GetComponent<PlayerRotator>().Initialize(_timeForRotation);
         PlayerAvatar avatar = GetComponent<PlayerAvatar>();
 
-        if (Bootstrapper.TryGetInstance<BattlesHandler>(out BattlesHandler battleHandler) == false) {
-            Debug.LogException(new System.Exception($"{this}: {nameof(battleHandler)} is null"));
-        }
-        if (Bootstrapper.TryGetInstance<GameLifeCycle>(out GameLifeCycle gameLifeCycle) == false) {
-            Debug.LogException(new System.Exception($"{this}: {nameof(gameLifeCycle)} is null"));
-        }
+        BattlesHandler battleHandler = Bootstrapper.GetInstance<BattlesHandler>();
+        GameLifeCycle gameLifeCycle = Bootstrapper.GetInstance<GameLifeCycle>();
 
         _stateMachine = new PlayerStateMachine(_shooter, battleHandler, mover, rotator, this, gameLifeCycle, avatar);
     }
