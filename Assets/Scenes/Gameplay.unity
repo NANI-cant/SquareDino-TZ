@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45044994, g: 0.50044864, b: 0.5751929, a: 1}
+  m_IndirectSpecularColor: {r: 0.4504503, g: 0.50044936, b: 0.57519394, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3253,7 +3253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2869603768890656714, guid: 67868f6e1a2ab76428af0a8556268ba6, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2869603768890656714, guid: 67868f6e1a2ab76428af0a8556268ba6, type: 3}
       propertyPath: m_LocalScale.x
@@ -3806,7 +3806,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2869603768890656714, guid: 67868f6e1a2ab76428af0a8556268ba6, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2869603768890656714, guid: 67868f6e1a2ab76428af0a8556268ba6, type: 3}
       propertyPath: m_LocalScale.x
@@ -4406,8 +4406,8 @@ Transform:
   m_Children:
   - {fileID: 658334344}
   - {fileID: 864174718}
-  - {fileID: 204774762}
   - {fileID: 1160526247}
+  - {fileID: 204774762}
   m_Father: {fileID: 1442961302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7253,6 +7253,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000032782555
       objectReference: {fileID: 0}
+    - target: {fileID: 5961197122728480840, guid: cbc34e416370d33489921cebb44cae29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6046239461389649166, guid: cbc34e416370d33489921cebb44cae29, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7409,6 +7413,10 @@ PrefabInstance:
       propertyPath: _bulletPool._container
       value: 
       objectReference: {fileID: 1382498338}
+    - target: {fileID: 5565708997661965659, guid: d1d5c152610626c4184264ffee5053da, type: 3}
+      propertyPath: _bulletSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6967694122778602608, guid: d1d5c152610626c4184264ffee5053da, type: 3}
       propertyPath: m_RootOrder
       value: 8
