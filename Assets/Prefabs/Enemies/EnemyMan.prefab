@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6046239461389649166}
-  - component: {fileID: 1582148729}
-  - component: {fileID: 5605658622993723992}
-  - component: {fileID: 191880379497326115}
+  - component: {fileID: 1164676145598081531}
+  - component: {fileID: 2829897687357775686}
+  - component: {fileID: 6577897279857752410}
   m_Layer: 7
   m_Name: EnemyMan
   m_TagString: Untagged
@@ -35,21 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 175.621, z: 0}
---- !u!114 &1582148729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6046239461389649167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f07a1a93b08e64fb9f314829a2220c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 5
-  _lastHitForce: 100
---- !u!114 &5605658622993723992
+--- !u!114 &1164676145598081531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ragdoll: {fileID: 4720397889600614836}
   _animator: {fileID: 5961197122728480840}
---- !u!114 &191880379497326115
+--- !u!114 &2829897687357775686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,6 +61,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17a9af03a8569f4a84b0cd4f565c2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6577897279857752410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6046239461389649167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f07a1a93b08e64fb9f314829a2220c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _lastHitForce: 100
 --- !u!1 &6046947522353703794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,11 +3018,11 @@ PrefabInstance:
     - target: {fileID: 6370275467898815003, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 1582148729}
+      objectReference: {fileID: 0}
     - target: {fileID: 6370275467898815003, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
       propertyPath: _health
       value: 
-      objectReference: {fileID: 191880379497326115}
+      objectReference: {fileID: 2829897687357775686}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
 --- !u!224 &352138206956509149 stripped

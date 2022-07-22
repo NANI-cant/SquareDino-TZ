@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerSpawnPoint : MonoBehaviour {
-    private void Awake() {
+    private void Start() {
         PlayerBehaviour player = Bootstrapper.GetInstance<PlayerBehaviour>();
 
         player.transform.position = transform.position;

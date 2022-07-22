@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5362612043146718217}
-  - component: {fileID: 1427902505}
-  - component: {fileID: 3199878762450412826}
-  - component: {fileID: 7726756126852947719}
+  - component: {fileID: 6899093610744865397}
+  - component: {fileID: 1605700731928026589}
+  - component: {fileID: 4988307502993722150}
   m_Layer: 7
   m_Name: EnemyWoman
   m_TagString: Untagged
@@ -35,21 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 175.621, z: 0}
---- !u!114 &1427902505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5362612043146718216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f07a1a93b08e64fb9f314829a2220c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 5
-  _lastHitForce: 100
---- !u!114 &3199878762450412826
+--- !u!114 &6899093610744865397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ragdoll: {fileID: 6983638776823805077}
   _animator: {fileID: 6095072671815612653}
---- !u!114 &7726756126852947719
+--- !u!114 &1605700731928026589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,6 +61,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17a9af03a8569f4a84b0cd4f565c2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4988307502993722150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362612043146718216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f07a1a93b08e64fb9f314829a2220c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _lastHitForce: 100
 --- !u!1 &6178954508584977951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,11 +3018,11 @@ PrefabInstance:
     - target: {fileID: 6370275467898815003, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 1427902505}
+      objectReference: {fileID: 0}
     - target: {fileID: 6370275467898815003, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
       propertyPath: _health
       value: 
-      objectReference: {fileID: 7726756126852947719}
+      objectReference: {fileID: 1605700731928026589}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5416407463b12d43b72c8e6cab57d44, type: 3}
 --- !u!224 &7471566022869356854 stripped

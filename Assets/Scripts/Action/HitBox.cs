@@ -9,7 +9,14 @@ public class HitBox : MonoBehaviour {
     private Vector3 _lastHitDirection;
     private Collider _collider;
 
-    public Collider Collider => _collider;
+    public Collider Collider {
+        get {
+            if (_collider == null) {
+                _collider = GetComponent<Collider>();
+            }
+            return _collider;
+        }
+    }
 
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();

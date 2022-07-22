@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour {
     }
 
     private void Awake() {
-        _hitBoxes = GetComponentsInChildren<HitBox>();
+        _hitBoxes = GetComponentsInChildren<HitBox>(true);
         _hitBoxesBounds = new Bounds(transform.position, Vector3.zero);
         foreach (var hitBox in _hitBoxes) {
             _hitBoxesBounds.Encapsulate(hitBox.Collider.bounds);
@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour {
     public void Enable() => _canTakeHit = true;
 
     private void OnHitTaked(HitBox hitbox) {
-        if (!_canTakeHit || _alreadyTakeHitAtThisFrame) return;
+        if (!_canTakeHit || _alreadyTakeHitAtThisFrame || _health <= 0) return;
 
         _alreadyTakeHitAtThisFrame = true;
         _health--;

@@ -8,8 +8,9 @@ public class Bootstrapper : MonoBehaviour {
 
     private static Dictionary<Type, object> _container;
 
-    public BattlesHandler BattlesHandler => _battlesHandler;
-    public PlayerBehaviour Player => _player;
+    private void Awake() {
+        Bootstrap();
+    }
 
     public static T GetInstance<T>() {
         if (_container.ContainsKey(typeof(T))) {
@@ -19,13 +20,11 @@ public class Bootstrapper : MonoBehaviour {
         return default(T);
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void Bootstrap() {
+    public void Bootstrap() {
         _container = new Dictionary<Type, object>();
-        var instance = FindObjectOfType<Bootstrapper>();
 
-        _container[typeof(BattlesHandler)] = instance.BattlesHandler;
-        _container[typeof(PlayerBehaviour)] = instance.Player;
+        _container[typeof(BattlesHandler)] = _battlesHandler;
+        _container[typeof(PlayerBehaviour)] = _player;
         _container[typeof(GameLifeCycle)] = new GameLifeCycle();
     }
 }
