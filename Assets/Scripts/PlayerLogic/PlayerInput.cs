@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour {
     private const float MAXDISTANCE = 100f;
 
     private PlayerBehaviour _character;
+    private Vector3 _debugPosition;
 
     private void Awake() {
         _character = GetComponent<PlayerBehaviour>();
@@ -23,7 +24,15 @@ public class PlayerInput : MonoBehaviour {
             else {
                 target = ray.origin + ray.direction * MAXDISTANCE;
             }
+            _debugPosition = target;
             _character.Shoot(target);
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(_debugPosition, 0.1f);
+    }
+#endif
 }

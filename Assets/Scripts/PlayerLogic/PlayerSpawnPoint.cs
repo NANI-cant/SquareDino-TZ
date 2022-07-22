@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class PlayerSpawnPoint : MonoBehaviour {
-    [SerializeField] private PlayerBehaviour _player;
+    private void Start() {
+        PlayerBehaviour player = Bootstrapper.GetInstance<PlayerBehaviour>();
 
-    private void Awake() {
-        _player.transform.position = transform.position;
-        _player.transform.rotation = transform.rotation;
+        player.transform.position = transform.position;
+        player.transform.rotation = transform.rotation;
     }
 }

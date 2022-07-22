@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
 public class EnemyHealthbar : MonoBehaviour {
-    [SerializeField] private EnemyBehaviour _enemy;
+    [SerializeField] private EnemyHealth _health;
 
     private Slider _slider;
     private Transform _transform;
@@ -16,25 +16,25 @@ public class EnemyHealthbar : MonoBehaviour {
     }
 
     private void OnEnable() {
-        _enemy.HitTaked += ChangeUI;
-        _enemy.Died += OnDied;
+        _health.HitTaked += ChangeUI;
+        _health.Died += OnDied;
     }
 
     private void OnDisable() {
-        _enemy.HitTaked -= ChangeUI;
-        _enemy.Died -= OnDied;
+        _health.HitTaked -= ChangeUI;
+        _health.Died -= OnDied;
     }
 
     private void Start() {
-        _slider.maxValue = _enemy.MaxHealth;
+        _slider.maxValue = _health.MaxHealth;
         _slider.minValue = 0;
-        _slider.value = _enemy.CurrentHealth;
+        _slider.value = _health.CurrentHealth;
     }
 
     private void Update() {
         _transform.rotation = Quaternion.LookRotation(_transform.position - _cameraTransform.position);
     }
 
-    private void OnDied() => gameObject.SetActive(false);
-    private void ChangeUI() => _slider.value = _enemy.CurrentHealth;
+    private void OnDied(HitBox hitBox) => gameObject.SetActive(false);
+    private void ChangeUI() => _slider.value = _health.CurrentHealth;
 }

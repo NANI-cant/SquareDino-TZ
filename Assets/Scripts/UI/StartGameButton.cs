@@ -7,9 +7,7 @@ public class StartGameButton : MonoBehaviour {
     private GameLifeCycle _gameLifeCycle;
 
     private void Awake() {
-        if (Bootstrapper.TryGetInstance<GameLifeCycle>(out _gameLifeCycle) == false) {
-            Debug.LogException(new System.Exception($"{this}: {nameof(_gameLifeCycle)} is null"));
-        }
+        _gameLifeCycle = Bootstrapper.GetInstance<GameLifeCycle>();
 
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnButtonDown);

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine.SceneManagement;
 
 public class PlayerShootingState : State {
@@ -7,13 +6,15 @@ public class PlayerShootingState : State {
     private BattlesHandler _battleHandler;
     private PlayerStateMachine _stateMachine;
     private PlayerAvatar _avatar;
+    private GameLifeCycle _gameLifeCycle;
 
-    public PlayerShootingState(PlayerStateMachine stateMachine, Shooter shooter, PlayerRotator rotator, BattlesHandler battleHandler, PlayerAvatar avatar) {
+    public PlayerShootingState(PlayerStateMachine stateMachine, Shooter shooter, PlayerRotator rotator, BattlesHandler battleHandler, PlayerAvatar avatar, GameLifeCycle gameLifeCycle) {
         _stateMachine = stateMachine;
         _shooter = shooter;
         _rotator = rotator;
         _battleHandler = battleHandler;
         _avatar = avatar;
+        _gameLifeCycle = gameLifeCycle;
     }
 
     public override void Enter() {
@@ -35,6 +36,6 @@ public class PlayerShootingState : State {
     }
 
     private void OnGameWon() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _gameLifeCycle.Restart();
     }
 }

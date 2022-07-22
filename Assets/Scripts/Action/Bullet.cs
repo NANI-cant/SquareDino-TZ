@@ -23,8 +23,8 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet> {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemy)) {
-            enemy.TakeHit();
+        if (collision.gameObject.TryGetComponent<HitBox>(out HitBox hitBox)) {
+            hitBox.TakeHit(_transform.forward);
         }
         ReturnToPool();
     }
